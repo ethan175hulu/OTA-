@@ -5,6 +5,7 @@ Thumbs.db
 # Editor settings
 .vscode/
 .idea/
+.claude/
 
 # Local environment
 .env
@@ -19,4 +20,3 @@ yarn-error.log*
 # Build output
 dist/
 build/
-

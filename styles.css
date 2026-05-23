@@ -256,11 +256,14 @@ h2 {
 .form-actions {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 12px;
   margin-top: 24px;
 }
 
 .secondary-button {
+  display: inline-flex;
+  align-items: center;
   padding: 12px 24px;
   border-radius: var(--radius-md);
   font-size: 15px;
@@ -268,6 +271,7 @@ h2 {
   color: var(--accent);
   background: rgba(0, 113, 227, 0.08);
   transition: all 0.2s ease;
+  text-decoration: none;
 }
 
 .secondary-button:hover {
@@ -281,8 +285,7 @@ h2 {
 
 /* Result Panel */
 .result-panel {
-  position: sticky;
-  top: 24px;
+  /* sticky removed: chain content can be tall */
 }
 
 .result-list {
@@ -377,6 +380,106 @@ dd {
   display: none;
 }
 
+/* Readonly Input */
+.readonly-input {
+  background: rgba(0, 113, 227, 0.04) !important;
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+  cursor: default;
+}
+
+/* Calculation Chain */
+.calculation-chain {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.chain-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.chain-step {
+  display: grid;
+  grid-template-columns: minmax(72px, 0.65fr) minmax(0, 1fr) minmax(56px, auto);
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.chain-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.chain-activity {
+  min-width: 0;
+  font-size: 13px;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.chain-activity.chain-empty {
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.chain-badge {
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 4px;
+  white-space: nowrap;
+}
+
+.chain-discount {
+  background: rgba(52, 199, 89, 0.1);
+  color: var(--success);
+}
+
+.chain-fixed {
+  background: rgba(255, 149, 0, 0.1);
+  color: var(--warning);
+}
+
+.chain-note {
+  background: rgba(255, 59, 48, 0.1);
+  color: var(--danger);
+}
+
+.chain-rate {
+  background: rgba(0, 113, 227, 0.1);
+  color: var(--accent);
+}
+
+.chain-badge.is-best {
+  background: rgba(52, 199, 89, 0.15);
+  color: var(--success);
+  font-weight: 600;
+}
+
+.chain-price {
+  text-align: right;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.chain-arrow {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 14px;
+  padding: 2px 0;
+  line-height: 1;
+}
+
 /* Responsive */
 @media (max-width: 860px) {
   .app-shell {
@@ -396,9 +499,6 @@ dd {
     grid-template-columns: 1fr;
   }
 
-  .result-panel {
-    position: static;
-  }
 
   .config-row {
     flex-wrap: wrap;
@@ -434,7 +534,27 @@ dd {
   .secondary-button,
   .ghost-button {
     width: 100%;
+    justify-content: center;
     text-align: center;
+  }
+
+  .chain-step {
+    grid-template-columns: 1fr auto;
+    gap: 4px 10px;
+  }
+
+  .chain-label {
+    grid-column: 1;
+  }
+
+  .chain-activity {
+    grid-column: 1 / -1;
+    order: 3;
+  }
+
+  .chain-price {
+    grid-column: 2;
+    grid-row: 1;
   }
 
   .result-list div {

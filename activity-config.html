@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>携程活动叠加配置 - OTA 房价计算器</title>
+    <link rel="stylesheet" href="activity-config.css?v=20260523-stack">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace">
+        <div class="heading-row">
+          <div>
+            <p class="eyebrow">OTA Price Calculator</p>
+            <h1>携程活动叠加配置</h1>
+          </div>
+          <a class="ghost-button" href="index.html">← 返回计算器</a>
+        </div>
+
+        <p class="page-desc">选择各分组参与的活动，组内择优（同组只生效最优一项），组间叠加（各组依次生效）。配置自动保存到浏览器。</p>
+
+        <div class="groups-container" id="groupsContainer">
+          <!-- 由 JS 动态渲染 -->
+        </div>
+
+        <div class="effective-panel" id="effectivePanel">
+          <div class="effective-label">叠加综合折扣</div>
+          <div class="effective-rate" id="effectiveRate">-</div>
+          <div class="effective-detail" id="effectiveDetail"></div>
+          <p class="effective-hint">此折扣将同步到主计算器的"综合活动折扣"</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="activity-config.js?v=20260523-stack4"></script>
+  </body>
+</html>
