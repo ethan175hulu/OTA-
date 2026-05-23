@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OTA 房价计算器</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace" aria-labelledby="page-title">
+        <div class="heading-row">
+          <div>
+            <p class="eyebrow">OTA Price Calculator</p>
+            <h1 id="page-title">OTA 房价计算器</h1>
+          </div>
+          <button class="ghost-button" id="resetButton" type="button">恢复默认</button>
+        </div>
+
+        <div class="platform-tabs" role="tablist" aria-label="平台选择">
+          <button class="platform-tab is-active" type="button" data-platform="ctrip">携程</button>
+          <button class="platform-tab" type="button" data-platform="meituan">美团</button>
+          <button class="platform-tab" type="button" data-platform="fliggy">飞猪</button>
+        </div>
+
+        <div class="mode-tabs" role="tablist" aria-label="计算模式">
+          <button class="mode-tab is-active" type="button" data-mode="forward">正推</button>
+          <button class="mode-tab" type="button" data-mode="targetDisplay">倒推外网价</button>
+          <button class="mode-tab" type="button" data-mode="targetIncome">按到手反推</button>
+        </div>
+
+        <section class="calculator-grid" aria-label="计算器">
+          <form class="panel input-panel" id="calculatorForm">
+            <div class="panel-header">
+              <h2>输入</h2>
+              <p id="modeHint">已知后台卖价，计算外网价和到手收入。</p>
+            </div>
+
+            <div class="form-grid">
+              <label class="field" data-field="basePrice">
+                <span>后台卖价</span>
+                <input id="basePrice" type="number" min="0" step="0.01" inputmode="decimal">
+              </label>
+
+              <label class="field" data-field="displayPrice">
+                <span>目标外网价</span>
+                <input id="displayPrice" type="number" min="0" step="0.01" inputmode="decimal">
+              </label>
+
+              <label class="field" data-field="targetIncome">
+                <span>希望到手金额</span>
+                <input id="targetIncome" type="number" min="0" step="0.01" inputmode="decimal">
+              </label>
+
+              <label class="field">
+                <span>综合活动折扣</span>
+                <input id="discountRate" type="number" min="0.01" max="1" step="0.01" inputmode="decimal">
+              </label>
+
+              <label class="field">
+                <span>佣金比例</span>
+                <div class="suffix-input">
+                  <input id="commissionRate" type="number" min="0" max="100" step="0.1" inputmode="decimal">
+                  <span>%</span>
+                </div>
+              </label>
+            </div>
+
+            <div class="form-actions">
+              <button class="secondary-button" id="savePlatformButton" type="button">保存当前平台配置</button>
+            </div>
+          </form>
+
+          <section class="panel result-panel" aria-labelledby="result-title">
+            <div class="panel-header">
+              <h2 id="result-title">结果</h2>
+              <p id="formulaText">外网价 = 后台卖价 × 综合活动折扣</p>
+            </div>
+
+            <dl class="result-list">
+              <div>
+                <dt>后台应录入卖价</dt>
+                <dd id="resultBasePrice">-</dd>
+              </div>
+              <div>
+                <dt>外网展示价</dt>
+                <dd id="resultDisplayPrice">-</dd>
+              </div>
+              <div>
+                <dt>平台佣金</dt>
+                <dd id="resultCommission">-</dd>
+              </div>
+              <div>
+                <dt>酒店到手收入</dt>
+                <dd id="resultIncome">-</dd>
+              </div>
+            </dl>
+          </section>
+        </section>
+
+        <section class="panel config-panel" aria-labelledby="config-title">
+          <div class="panel-header">
+            <h2 id="config-title">平台默认配置</h2>
+            <p>保存后会写入当前浏览器，下次打开仍然可用。</p>
+          </div>
+          <div class="config-table" id="configTable" aria-live="polite"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
