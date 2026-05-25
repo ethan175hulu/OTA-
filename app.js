@@ -8,6 +8,12 @@ const defaultPlatforms = {
     discountRate: 0.85,
     commissionRate: 12,
   },
+  ctrip_custom: {
+    name: "携程自定义",
+    basePrice: 238,
+    discountRate: 0.85,
+    commissionRate: 12,
+  },
   meituan: {
     name: "美团",
     basePrice: 228,
